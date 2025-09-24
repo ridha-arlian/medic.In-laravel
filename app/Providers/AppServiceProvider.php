@@ -2,14 +2,18 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    // public $singletons = [
-    //     \Filament\Auth\Http\Responses\Contracts\LoginResponse::class => \App\Http\Responses\LoginResponse::class,
-    //     \Filament\Auth\Http\Responses\Contracts\LogoutResponse::class => \App\Http\Responses\LogoutResponse::class,
-    // ];
+    public function boot(): void
+    {
+        // Force HTTPS di production
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+    }
     
     /**
      * Register any application services.
