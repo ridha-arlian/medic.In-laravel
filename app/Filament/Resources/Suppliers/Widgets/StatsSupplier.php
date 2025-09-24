@@ -38,7 +38,7 @@ class StatsSupplier extends StatsOverviewWidget
                 ->color('warning'),
                 
             Stat::make('Total Stock Obat', number_format($totalMedicineStock))
-                ->description('Dari semua supplier')
+                ->description('Dai semua supplier')
                 ->descriptionIcon('heroicon-m-cube')
                 ->color('info'),
         ];
