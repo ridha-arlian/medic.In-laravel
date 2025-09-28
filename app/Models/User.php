@@ -8,11 +8,12 @@ use Filament\Panel;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, HasPanelShield;
 
     /**
      * The attributes that are mass assignable.
@@ -46,7 +47,24 @@ class User extends Authenticatable
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->hasRole(['super_admin', 'panel_user', 'apoteker', 'dokter']);
+        // return str_ends_with($this->email, '@example.com') && $this->hasVerifiedEmail();
+        return true;
+    }
+
+    public function canImpersonate(): bool
+    {
+        // Let's prevent impersonating other users at our own company
+        // example:
+        // return $this->email === 'superadmin@example.com';
+        return true;
+    }
+
+    public function canBeImpersonated(): bool
+    {
+        // Let's prevent being impersonated by other users at our own company
+        // example:
+        // return $this->email === 'member@example.com';
+        return true;
     }
 
 }
