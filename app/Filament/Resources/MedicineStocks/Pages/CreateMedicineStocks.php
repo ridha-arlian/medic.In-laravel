@@ -8,4 +8,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateMedicineStocks extends CreateRecord
 {
     protected static string $resource = MedicineStocksResource::class;
+
+    protected static bool $canCreateAnother = true;
 }
