@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\MedicineSupplier;
 use Illuminate\Foundation\Auth\User as AuthUser;
+use App\Models\MedicineSupplier;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MedicineSupplierPolicy

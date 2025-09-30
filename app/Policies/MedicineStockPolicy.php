@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\MedicineStock;
 use Illuminate\Foundation\Auth\User as AuthUser;
+use App\Models\MedicineStock;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class MedicineStocksPolicy
+class MedicineStockPolicy
 {
     use HandlesAuthorization;
     
