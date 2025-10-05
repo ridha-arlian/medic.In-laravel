@@ -22,7 +22,7 @@ class ListSuppliers extends ListRecords
     {
         return [
             CreateAction::make()
-                ->disableCreateAnother()
+                ->createAnother(false)
                 ->label('Add New Supplier'),
         ];
     }

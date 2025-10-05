@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\MedicineStocks\Pages;
 
-use App\Filament\Resources\MedicineStocks\MedicineStocksResource;
 use Filament\Resources\Pages\CreateRecord;
+use App\Filament\Resources\MedicineStocks\MedicineStocksResource;
 
 class CreateMedicineStocks extends CreateRecord
 {

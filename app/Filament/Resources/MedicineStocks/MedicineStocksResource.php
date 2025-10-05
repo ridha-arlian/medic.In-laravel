@@ -8,13 +8,11 @@ use Filament\Schemas\Schema;
 use App\Models\MedicineStock;
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
-use App\Filament\Resources\MedicineStocks\Pages\EditMedicineStocks;
+use App\Filament\Resources\MedicineStocks\Widgets\StockDetailStat;
 use App\Filament\Resources\MedicineStocks\Pages\ListMedicineStocks;
 use App\Filament\Resources\MedicineStocks\Pages\ViewMedicineStocks;
-use App\Filament\Resources\MedicineStocks\Pages\CreateMedicineStocks;
 use App\Filament\Resources\MedicineStocks\Schemas\MedicineStocksForm;
 use App\Filament\Resources\MedicineStocks\Tables\MedicineStocksTable;
-use App\Filament\Resources\MedicineStocks\Widgets\StockDetailStat;
 use App\Filament\Resources\MedicineStocks\Schemas\MedicineStocksInfolist;
 
 class MedicineStocksResource extends Resource
@@ -56,9 +54,7 @@ class MedicineStocksResource extends Resource
     {
         return [
             'index' => ListMedicineStocks::route('/'),
-            // 'create' => CreateMedicineStocks::route('/create'),
             'view' => ViewMedicineStocks::route('/{record}'),
-            // 'edit' => EditMedicineStocks::route('/{record}/edit'),
         ];
     }
 }

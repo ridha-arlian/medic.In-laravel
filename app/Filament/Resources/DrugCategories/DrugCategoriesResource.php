@@ -9,11 +9,8 @@ use Filament\Schemas\Schema;
 use App\Models\MedicineCategory;
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
-use App\Filament\Resources\DrugCategories\Pages\EditDrugCategories;
 use App\Filament\Resources\DrugCategories\Pages\ListDrugCategories;
-use App\Filament\Resources\DrugCategories\Pages\ViewDrugCategories;
 use App\Filament\Resources\DrugCategories\Widgets\DrugCategoriesStat;
-use App\Filament\Resources\DrugCategories\Pages\CreateDrugCategories;
 use App\Filament\Resources\DrugCategories\Schemas\DrugCategoriesForm;
 use App\Filament\Resources\DrugCategories\Tables\DrugCategoriesTable;
 use App\Filament\Resources\DrugCategories\Schemas\DrugCategoriesInfolist;
@@ -59,9 +56,6 @@ class DrugCategoriesResource extends Resource
     {
         return [
             'index' => ListDrugCategories::route('/'),
-            // 'create' => CreateDrugCategories::route('/create'),
-            // 'view' => ViewDrugCategories::route('/{record}'),
-            // 'edit' => EditDrugCategories::route('/{record}/edit'),
         ];
     }
 }

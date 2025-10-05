@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\MedicineStocks\Pages;
 
-use App\Filament\Resources\MedicineStocks\MedicineStocksResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\MedicineStocks\MedicineStocksResource;
 
 class ListMedicineStocks extends ListRecords
 {
@@ -14,7 +14,7 @@ class ListMedicineStocks extends ListRecords
     {
         return [
             CreateAction::make()
-                ->disableCreateAnother()
+                ->createAnother(false)
                 ->label('Add New Stock'),
         ];
     }

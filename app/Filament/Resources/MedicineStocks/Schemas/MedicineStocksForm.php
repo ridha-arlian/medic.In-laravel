@@ -40,19 +40,22 @@ class MedicineStocksForm
                     ->placeholder('Enter expired date'),
                 Select::make('medicine_types_id')
                     ->label('Medicine Type')
-                    ->options(\App\Models\MedicineType::where('status', 'aktif')->pluck('name', 'id'))
+                    ->options(\App\Models\MedicineType::where('status', 'aktif')
+                        ->pluck('name', 'id'))
                     ->required()
                     ->searchable()
                     ->placeholder('Pilih Tipe Obat'),
                 Select::make('medicine_categories_id')
                     ->label('Medicine Category')
-                    ->options(\App\Models\MedicineCategory::where('status', 'aktif')->pluck('name', 'id'))
+                    ->options(\App\Models\MedicineCategory::where('status', 'aktif')
+                        ->pluck('name', 'id'))
                     ->required()
                     ->searchable()
                     ->placeholder('Pilih Kategori Obat'),
                 Select::make('medicine_suppliers_id')
                     ->label('Supplier')
-                    ->options(\App\Models\MedicineSupplier::where('status', 'aktif')->pluck('name', 'id'))
+                    ->options(\App\Models\MedicineSupplier::where('status', 'aktif')
+                        ->pluck('name', 'id'))
                     ->required()
                     ->searchable()
                     ->placeholder('Pilih Supplier'),

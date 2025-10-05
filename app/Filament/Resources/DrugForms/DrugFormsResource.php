@@ -9,11 +9,8 @@ use Filament\Schemas\Schema;
 use App\Models\MedicineType;
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
-use App\Filament\Resources\DrugForms\Pages\ViewDrugForms;
-use App\Filament\Resources\DrugForms\Pages\EditDrugForms;
 use App\Filament\Resources\DrugForms\Pages\ListDrugForms;
 use App\Filament\Resources\DrugForms\Widgets\DrugFormsStat;
-use App\Filament\Resources\DrugForms\Pages\CreateDrugForms;
 use App\Filament\Resources\DrugForms\Schemas\DrugFormsForm;
 use App\Filament\Resources\DrugForms\Tables\DrugFormsTable;
 use App\Filament\Resources\DrugForms\Schemas\DrugFormsInfolist;
@@ -59,9 +56,6 @@ class DrugFormsResource extends Resource
     {
         return [
             'index' => ListDrugForms::route('/'),
-            // 'create' => CreateDrugForms::route('/create'),
-            // 'view' => ViewDrugForms::route('/{record}'),
-            // 'edit' => EditDrugForms::route('/{record}/edit'),
         ];
     }
 }

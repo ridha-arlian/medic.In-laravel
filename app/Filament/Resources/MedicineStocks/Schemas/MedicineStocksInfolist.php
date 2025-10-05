@@ -14,12 +14,11 @@ class MedicineStocksInfolist
     {
         return $schema
             ->components([
-                // Basic Information Section
                 Section::make('Basic Information')
                     ->schema([
                         Grid::make(2)
                             ->schema([
-                                TextEntry::make('medicine_stocks_id') // sesuai field kamu
+                                TextEntry::make('medicine_stocks_id')
                                     ->label('Stock ID')
                                     ->copyable()
                                     ->icon('heroicon-o-hashtag'),
@@ -29,7 +28,7 @@ class MedicineStocksInfolist
                             ]),
                         Grid::make(3)
                             ->schema([
-                                TextEntry::make('medicine_types.name') // sesuai relationship kamu
+                                TextEntry::make('medicine_types.name')
                                     ->label('Drug Type')
                                     ->badge(),
                                 TextEntry::make('medicine_categories.name')
@@ -41,7 +40,6 @@ class MedicineStocksInfolist
                             ]),
                     ]),
 
-                // Stock Information Section
                 Section::make('Stock Information')
                     ->schema([
                         Grid::make(2)
@@ -60,7 +58,6 @@ class MedicineStocksInfolist
                             ]),
                     ]),
 
-                // Batch & Expiry Section
                 Section::make('Batch & Expiry')
                     ->schema([
                         Grid::make(2)
@@ -71,13 +68,10 @@ class MedicineStocksInfolist
                                 TextEntry::make('expired_date')
                                     ->label('Expiry Date')
                                     ->date('d M Y')
-                                    ->color(fn (string $state): string => 
-                                        now()->addDays(90)->gte($state) ? 'danger' : 'success'
-                                    ),
+                                    ->color(fn (string $state): string => now()->addDays(90)->gte($state) ? 'danger' : 'success'),
                             ]),
                     ]),
 
-                // System Info
                 Section::make('System Information')
                     ->schema([
                         TextEntry::make('created_at')

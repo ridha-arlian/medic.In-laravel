@@ -1,0 +1,466 @@
+ADMIN ✅
+    Dashboard
+        Fungsi: Tampilan ringkasan
+        Isi:
+            Widget: Total Dokter, Total Apoteker, Total Pasien
+            Widget: Konsultasi Hari Ini
+            Widget: Stok Obat Menipis (alert)
+            Chart: Grafik kunjungan 7 hari terakhir
+            Tabel: Aktivitas terbaru (dari audit log)
+
+    Manajemen User
+        Daftar Admin
+            CRUD: Create, Read, Update, Delete
+            Fungsi:
+                Tambah admin baru (nama, email, password)
+                Edit data admin
+                Hapus admin
+                Aktifkan/Non-aktifkan akun
+            Field Form:
+                Nama Lengkap
+                Email
+                Password (hanya saat create/reset)
+                Status (Aktif/Non-aktif)
+                Photo/Avatar (opsional)
+        Daftar Dokter
+            CRUD: Create, Read, Update, Delete
+            Fungsi:
+                Registrasi dokter baru
+                Edit profil dokter
+                Lihat detail + statistik dokter
+                Non-aktifkan dokter (soft delete)
+            Field Form:
+                Nama Lengkap
+                Email
+                Password
+                No. STR (Surat Tanda Registrasi)
+                Spesialisasi (select dari master)
+                No. Telepon
+                Alamat
+                Biaya Konsultasi (default atau custom)
+                Photo
+                Status (Aktif/Cuti/Non-aktif)
+            Fitur Tambahan:
+                View: Lihat total pasien yang ditangani
+                View: Lihat total resep yang dibuat
+        Daftar Apoteker
+            CRUD: Create, Read, Update, Delete
+            Fungsi:
+                Registrasi apoteker baru
+                Edit data apoteker
+                Non-aktifkan apoteker
+            Field Form:
+                Nama Lengkap
+                Email
+                Password
+                No. STRA (Surat Tanda Registrasi Apoteker)
+                No. Telepon
+                Alamat
+                Photo
+                Status (Aktif/Non-aktif)
+    
+    Master Data
+        Spesialisasi Dokter
+            CRUD: Create, Read, Update, Delete
+            Fungsi: Kelola daftar spesialisasi (Umum, Gigi, Anak, dll)
+            Field:
+                Nama Spesialisasi
+                Kode (misal: SP-001)
+                Deskripsi
+        Kategori Obat
+            CRUD: Create, Read, Update, Delete
+            Fungsi: Kelola kategori obat (Antibiotik, Analgesik, dll)
+            Field:
+                Nama Kategori
+                Kode
+                Deskripsi
+        Unit/Satuan Obat
+            CRUD: Create, Read, Update, Delete
+            Fungsi: Kelola satuan (Tablet, Kapsul, Botol, ml, dll)
+            Field:
+                Nama Satuan
+                Kode
+        Supplier Obat (Opsional)
+            CRUD: Create, Read, Update, Delete
+                Field:
+                    Nama Supplier
+                    Alamat
+                    Telepon
+                    Email
+                    Contact Person
+    
+    Pengaturan Sistem
+        CRUD: Hanya Update (Settings)
+        Fungsi: Konfigurasi aplikasi
+        Field:
+            Nama Klinik
+            Alamat Klinik
+            Telepon
+            Email
+            Logo
+            Jam Buka/Tutup
+            Biaya Konsultasi Default
+            Batas Minimal Stok Obat (untuk alert)
+    
+    Audit Log
+        CRUD: Hanya Read (dari Shield)
+        Fungsi:
+            Lihat siapa melakukan apa dan kapan
+            Filter berdasarkan user, tanggal, aktivitas
+        Kolom Tabel:
+            User
+            Aktivitas (Created, Updated, Deleted)
+            Model (User, Medicine, Prescription)
+            Waktu
+            IP Address
+    
+    Laporan
+        Laporan Kunjungan
+            CRUD: Hanya Read + Export
+            Fungsi:
+                Filter berdasarkan tanggal, dokter
+                Export ke Excel/PDF
+            Kolom:
+                Tanggal
+                Nama Pasien
+                Dokter
+                Diagnosis
+                Biaya
+        Laporan Resep
+            CRUD: Hanya Read + Export
+            Filter: Tanggal, dokter, apoteker
+            Kolom:
+                No. Resep
+                Tanggal
+                Pasien
+                Dokter
+                Apoteker yang proses
+                Total Obat
+                Status
+        Laporan Stok Obat
+            CRUD: Hanya Read + Export
+            Filter: Kategori, stok menipis
+            Kolom:
+                Nama Obat
+                Kategori
+                Stok Tersedia
+                Satuan
+                Expired Date terdekat
+
+DOKTER
+    Dashboard
+        Fungsi: Overview hari ini
+        Widget:
+            Pasien Hari Ini
+            Total Resep Hari Ini
+            Pasien Menunggu (real-time)
+            Chart: Kunjungan 7 hari terakhir
+    
+    Data Pasien
+        Daftar Pasien
+            CRUD: Create, Read, Update
+            Fungsi:
+                Registrasi pasien baru
+                Edit data pasien
+                Lihat riwayat medis lengkap
+            Field Form:
+                No. Rekam Medis (auto-generate)
+                NIK
+                Nama Lengkap
+                Tanggal Lahir
+                Jenis Kelamin
+                Alamat
+                No. Telepon
+                Golongan Darah
+                Alergi Obat (penting!)
+                Riwayat Penyakit
+            Fitur Tambahan:
+                Search cepat berdasarkan nama/NIK/No.RM
+                View riwayat kunjungan
+        Riwayat Kunjungan
+            CRUD: Hanya Read
+            Fungsi: Lihat semua riwayat konsultasi pasien
+            Filter: Nama pasien, tanggal
+            Kolom:
+                Tanggal
+                Nama Pasien
+                Keluhan
+                Diagnosis
+                Tindakan
+                Resep
+    
+    Konsultasi
+        Antrian Pasien
+            CRUD: Create (untuk tambah pasien ke antrian)
+            Fungsi:
+                Lihat daftar pasien yang menunggu
+                Panggil pasien untuk konsultasi
+                Status: Menunggu → Sedang Diperiksa → Selesai
+            Field Form (Tambah Antrian):
+                Pilih Pasien (dropdown/search)
+                Keluhan Awal
+                Prioritas (Normal/Urgent)
+            Kolom Tabel:
+                No. Antrian
+                Nama Pasien
+                Keluhan
+                Waktu Masuk
+                Status
+                Action: Mulai Konsultasi
+        Rekam Medis Elektronik (EMR)
+            CRUD: Create (setiap konsultasi)
+            Fungsi:
+                Input hasil pemeriksaan
+                Diagnosis
+                Tindakan
+                Buat resep langsung
+            Field Form:
+                Data Vital:
+                    Tekanan Darah
+                    Suhu Tubuh
+                    Nadi
+                    Berat Badan
+                    Tinggi Badan
+                Pemeriksaan:
+                    Anamnesa (keluhan detail)
+                    Pemeriksaan Fisik
+                    Diagnosis (ICD-10 - opsional)
+                Tindakan:
+                    Tindakan Medis
+                    Catatan Dokter
+                Resep:
+                    Tambah obat (search obat)
+                    Jumlah
+                    Dosis
+                    Aturan pakai
+                    Catatan khusus
+        Buat Resep (bisa terpisah atau dalam EMR)
+            CRUD: Create, Read, Update (sebelum diproses apoteker)
+            Fungsi:
+                Buat resep untuk pasien
+                Edit resep yang belum diproses
+            Form:
+                Pilih Pasien
+                Tambah Obat (bisa multiple):
+                Nama Obat (dropdown dengan stok)
+                Jumlah
+                Dosis (misal: 3x1)
+                Aturan Pakai (Sesudah/Sebelum makan)
+                Keterangan
+        Catatan Resep
+            Setelah Submit:
+                Resep otomatis masuk ke antrian apoteker
+                Status: Pending → Diproses → Selesai
+    
+    Jadwal Praktik
+        CRUD: Create, Read, Update, Delete
+        Fungsi: Atur jadwal dan ketersediaan
+        Field:
+            Hari
+            Jam Mulai - Jam Selesai
+            Status (Aktif/Cuti/Libur)
+            Catatan (misal: "Cuti Hari Raya")
+
+    Laporan Saya
+        Statistik Pasien
+            CRUD: Hanya Read + Export
+            Filter: Periode tanggal
+            Isi:
+                Total Pasien Ditangani
+                Diagnosis Terbanyak
+                Chart kunjungan
+        Riwayat Resep
+            CRUD: Hanya Read
+            Filter: Tanggal, status
+            Kolom:
+                No. Resep
+                Tanggal
+                Pasien
+                Total Obat
+                Status (Pending/Diproses/Selesai)
+
+APOTEKER
+    Dashboard
+        Widget:
+            Resep Pending (perlu diproses)
+            Total Obat
+            Obat Stok Menipis (alert merah)
+            Obat Expired < 3 bulan
+        Chart: Penggunaan obat terbanyak
+    
+    Manajemen Obat
+        Daftar Obat
+            CRUD: Create, Read, Update, Delete
+            Fungsi: Master data obat
+            Field Form:
+                Kode Obat (auto/manual)
+                Nama Obat
+                Nama Generik
+                Kategori (dari master)
+                Satuan (Tablet, Botol, dll)
+                Harga Satuan
+                Stok Minimal (untuk alert)
+                Deskripsi
+                Efek Samping
+                Kontraindikasi
+            Kolom Tabel:
+                Kode
+                Nama
+                Kategori
+                Stok Tersedia
+                Harga
+                Action
+        Stok Obat
+            CRUD: Hanya Read (stok update otomatis)
+            Fungsi: Monitor stok real-time
+            Filter:
+                Kategori
+                Stok Menipis
+                Expired Date
+            Kolom:
+                Nama Obat
+                Stok Tersedia
+                Stok Minimal
+                Status (Aman/Menipis/Habis)
+                Batch/Lot
+                Expired Date
+                Action:
+                    Tambah Stok (ke halaman Pembelian)
+        Obat Kadaluarsa
+            CRUD: Hanya Read + Write Off
+            Fungsi: Kelola obat yang akan/sudah expired
+            Filter:
+                Expired < 1 bulan
+                Expired < 3 bulan
+                Sudah expired
+            Kolom:
+                Nama Obat
+                Batch
+                Expired Date
+                Stok
+                Status
+                Action:
+                    Write Off (hapus dari stok + log)
+    
+    Resep
+        Resep Masuk
+            CRUD: Read, Update (proses)
+            Fungsi:
+                Lihat resep baru dari dokter
+                Proses resep (siapkan obat)
+                Konfirmasi resep selesai
+            Kolom Tabel:
+                No. Resep
+                Tanggal
+                Dokter
+                Pasien
+                Total Item
+                Status
+                Action: Proses
+            Halaman Proses Resep:
+                Detail pasien
+                Daftar obat yang diresepkan
+                Checklist tiap obat (konfirmasi stok cukup)
+                Input harga (jika belum ada)
+                Total biaya
+                Tombol: Selesai Proses
+            Status Flow:
+                Pending (dari dokter) → Diproses → Selesai
+        Riwayat Resep
+            CRUD: Hanya Read
+            Fungsi: Lihat semua resep yang pernah diproses
+            Filter: Tanggal, dokter, status
+            Kolom:
+                No. Resep
+                Tanggal
+                Dokter
+                Pasien
+                Diproses Oleh (apoteker)
+                Total Biaya
+                Status
+
+    Stok Management
+        Tambah Stok (Pembelian)
+            CRUD: Create, Read
+            Fungsi: Input pembelian obat baru
+            Field Form:
+                Tanggal Pembelian
+                Supplier (opsional)
+                No. Faktur
+                Daftar Obat:
+                    Pilih Obat
+                    Batch/Lot Number
+                    Expired Date
+                    Jumlah
+                    Harga Beli (per satuan)
+                Total Pembelian
+                Catatan
+            Setelah Submit:
+                Stok obat otomatis bertambah
+                Tercatat di Riwayat Pergerakan Stok
+        Penyesuaian Stok
+            CRUD: Create, Read
+            Fungsi:
+                Koreksi stok (opname fisik)
+                Input obat rusak/hilang
+            Field Form:
+                Tanggal
+                Pilih Obat
+                Stok Sistem (auto)
+                Stok Fisik (input)
+                Selisih (auto calculate)
+                Alasan (Opname/Rusak/Hilang/Kadaluarsa)
+                Catatan
+        Riwayat Pergerakan Stok
+            CRUD: Hanya Read (auto-log)
+            Fungsi: Tracking semua perubahan stok
+            Filter: Obat, tanggal, tipe
+            Kolom:
+                Tanggal
+                Obat
+                Tipe (Pembelian/Penjualan/Penyesuaian/Resep)
+                Masuk/Keluar
+                Sisa Stok
+                User
+                Keterangan
+    
+    Laporan
+        Laporan Penjualan Obat
+            CRUD: Hanya Read + Export
+            Filter: Periode, kategori obat
+            Kolom:
+                Nama Obat
+                Jumlah Terjual
+                Total Pendapatan
+                Profit (jika ada harga beli)
+        Laporan Stok
+            CRUD: Hanya Read + Export
+            Fungsi: Snapshot stok saat ini
+            Kolom:
+                Nama Obat
+                Kategori
+                Stok Tersedia
+                Nilai Stok (qty × harga)
+                Status
+    
+    Fitur Tambahan Penting
+        Notifikasi (untuk semua role)
+            Dokter:
+                Pasien baru masuk antrian
+            Apoteker:
+                Resep baru perlu diproses
+            Admin:
+                Stok obat menipis
+                obat akan expired
+            Implementasi:
+                Gunakan Filament Notifications + Database Notifications
+        Search Global
+            Search bar di header
+            Bisa cari:
+                Pasien (by nama/NIK/No.RM),
+                Obat,
+                Resep
+        Profile Management (semua role)
+            Edit profil sendiri
+            Ganti password
+            Upload photo

@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources\MedicineStocks\Pages;
 
-use App\Filament\Resources\MedicineStocks\MedicineStocksResource;
-use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\MedicineStocks\MedicineStocksResource;
 
 class EditMedicineStocks extends EditRecord
 {

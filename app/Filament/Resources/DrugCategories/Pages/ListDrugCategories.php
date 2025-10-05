@@ -21,7 +21,7 @@ class ListDrugCategories extends ListRecords
     {
         return [
             CreateAction::make()
-                ->disableCreateAnother()
+                ->createAnother(false)
                 ->label('Add New Drug Category'),
         ];
     }

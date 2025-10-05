@@ -16,16 +16,16 @@ class StockDetailStat extends StatsOverviewWidget
             return [];
         }
 
-        // Stock status
         $stockStatus = match (true) {
             $this->record->quantity <= 10 => 'Critical',
             $this->record->quantity <= 50 => 'Low', 
             default => 'Good'
         };
 
-        // Expiry comparison
-        $today = now()->startOfDay();
-        $expiredDate = \Carbon\Carbon::parse($this->record->expired_date)->startOfDay();
+        $today = now()
+            ->startOfDay();
+        $expiredDate = \Carbon\Carbon::parse($this->record->expired_date)
+            ->startOfDay();
         
         if ($expiredDate->lt($today)) {
             $expiryStatus = 'Expired';

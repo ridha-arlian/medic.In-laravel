@@ -11,11 +11,11 @@ class DrugCategoriesStat extends StatsOverviewWidget
 {
     protected function getStats(): array
     {
-        // Hitung total medicine categories aktif dan non-aktif
-        $activeDrugCategories = MedicineCategory::where('status', 'aktif')->count();
-        $inactiveDrugCategories = MedicineCategory::where('status', 'nonaktif')->count();
+        $activeDrugCategories = MedicineCategory::where('status', 'aktif')
+            ->count();
+        $inactiveDrugCategories = MedicineCategory::where('status', 'nonaktif')
+            ->count();
 
-        // Medicine category dengan stock obat terbanyak
         $categoryWithMostStock = MedicineCategory::withCount('medicineStocks')
             ->orderBy('medicine_stocks_count', 'desc')
             ->first();
@@ -23,8 +23,8 @@ class DrugCategoriesStat extends StatsOverviewWidget
         $mostStockCount = $categoryWithMostStock ? $categoryWithMostStock->medicine_stocks_count : 0;
         $categoryName = $categoryWithMostStock ? $categoryWithMostStock->name : 'Tidak ada';
         
-        // Total variasi kategori obat yang tersedia di stock
-        $totalCategoryVariants = MedicineStock::distinct('medicine_categories_id')->count('medicine_categories_id');
+        $totalCategoryVariants = MedicineStock::distinct('medicine_categories_id')
+            ->count('medicine_categories_id');
 
         return [
             Stat::make('Kategori Obat Aktif', $activeDrugCategories)

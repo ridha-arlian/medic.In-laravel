@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\MedicineStocks\Pages;
 
-use App\Filament\Resources\MedicineStocks\MedicineStocksResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
+use App\Filament\Resources\MedicineStocks\MedicineStocksResource;
 
 class ViewMedicineStocks extends ViewRecord
 {
