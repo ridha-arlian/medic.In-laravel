@@ -9,85 +9,85 @@ ADMIN ✅
             Tabel: Aktivitas terbaru (dari audit log)
 
     Manajemen User
-        Daftar Admin
+        Daftar Admin ✅
             CRUD: Create, Read, Update, Delete
             Fungsi:
-                Tambah admin baru (nama, email, password)
-                Edit data admin
-                Hapus admin
-                Aktifkan/Non-aktifkan akun
+                Tambah admin baru (nama, email, password)✅
+                Edit data admin✅
+                Hapus admin✅
+                Aktifkan/Non-aktifkan akun✅
             Field Form:
-                Nama Lengkap
-                Email
-                Password (hanya saat create/reset)
-                Status (Aktif/Non-aktif)
+                Nama Lengkap✅
+                Email✅
+                Password (hanya saat create/reset)✅
+                Status (Aktif/Non-aktif)✅
                 Photo/Avatar (opsional)
-        Daftar Dokter
+        Daftar Dokter ✅
             CRUD: Create, Read, Update, Delete
             Fungsi:
-                Registrasi dokter baru
-                Edit profil dokter
+                Registrasi dokter baru✅
+                Edit profil dokter✅
                 Lihat detail + statistik dokter
-                Non-aktifkan dokter (soft delete)
+                Non-aktifkan dokter (soft delete)✅
             Field Form:
-                Nama Lengkap
-                Email
-                Password
-                No. STR (Surat Tanda Registrasi)
-                Spesialisasi (select dari master)
-                No. Telepon
-                Alamat
-                Biaya Konsultasi (default atau custom)
+                Nama Lengkap✅
+                Email✅
+                Password✅
+                No. STR (Surat Tanda Registrasi)✅
+                Spesialisasi (select dari master)✅
+                No. Telepon✅
+                Alamat✅
+                Biaya Konsultasi (default atau custom)✅
                 Photo
-                Status (Aktif/Cuti/Non-aktif)
+                Status (Aktif/Cuti/Non-aktif)✅
             Fitur Tambahan:
                 View: Lihat total pasien yang ditangani
                 View: Lihat total resep yang dibuat
-        Daftar Apoteker
+        Daftar Apoteker ✅
             CRUD: Create, Read, Update, Delete
             Fungsi:
-                Registrasi apoteker baru
-                Edit data apoteker
-                Non-aktifkan apoteker
+                Registrasi apoteker baru✅
+                Edit data apoteker✅
+                Non-aktifkan apoteker✅
             Field Form:
-                Nama Lengkap
-                Email
-                Password
-                No. STRA (Surat Tanda Registrasi Apoteker)
-                No. Telepon
-                Alamat
+                Nama Lengkap✅
+                Email✅
+                Password✅
+                No. STRA (Surat Tanda Registrasi Apoteker)✅
+                No. Telepon✅
+                Alamat✅
                 Photo
-                Status (Aktif/Non-aktif)
+                Status (Aktif/Non-aktif)✅
     
     Master Data
-        Spesialisasi Dokter
+        Spesialisasi Dokter ✅
             CRUD: Create, Read, Update, Delete
-            Fungsi: Kelola daftar spesialisasi (Umum, Gigi, Anak, dll)
+            Fungsi: Kelola daftar spesialisasi (Umum, Gigi, Anak, dll)✅
             Field:
-                Nama Spesialisasi
-                Kode (misal: SP-001)
-                Deskripsi
-        Kategori Obat
+                Nama Spesialisasi✅
+                Kode (SP-00001)✅
+                Deskripsi✅
+        Kategori Obat✅
             CRUD: Create, Read, Update, Delete
-            Fungsi: Kelola kategori obat (Antibiotik, Analgesik, dll)
+            Fungsi: Kelola kategori obat (Antibiotik, Analgesik, dll)✅
             Field:
-                Nama Kategori
-                Kode
-                Deskripsi
+                Nama Kategori✅
+                Kode✅
+                Deskripsi✅
         Unit/Satuan Obat
             CRUD: Create, Read, Update, Delete
             Fungsi: Kelola satuan (Tablet, Kapsul, Botol, ml, dll)
             Field:
-                Nama Satuan
-                Kode
+                Nama Satuan✅
+                Kode✅
         Supplier Obat (Opsional)
             CRUD: Create, Read, Update, Delete
-                Field:
-                    Nama Supplier
-                    Alamat
-                    Telepon
-                    Email
-                    Contact Person
+            Field:
+                Nama Supplier✅
+                Alamat✅
+                Telepon✅
+                Email✅
+                Contact Person✅
     
     Pengaturan Sistem
         CRUD: Hanya Update (Settings)
