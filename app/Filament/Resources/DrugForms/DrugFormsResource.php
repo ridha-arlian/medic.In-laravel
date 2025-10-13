@@ -2,13 +2,10 @@
 
 namespace App\Filament\Resources\DrugForms;
 
-use UnitEnum;
-use BackedEnum;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
 use App\Models\MedicineType;
 use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
 use App\Filament\Resources\DrugForms\Pages\ListDrugForms;
 use App\Filament\Resources\DrugForms\Widgets\DrugFormsStat;
 use App\Filament\Resources\DrugForms\Schemas\DrugFormsForm;
@@ -19,9 +16,9 @@ class DrugFormsResource extends Resource
 {
     protected static ?string $model = MedicineType::class;
 
-    protected static string | UnitEnum | null $navigationGroup = 'Catalogues';
+    protected static string | \UnitEnum | null $navigationGroup = 'Master Data';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleGroup;
+    protected static string | \BackedEnum | null $navigationIcon = 'healthicons-o-medicines';
 
     public static function form(Schema $schema): Schema
     {
