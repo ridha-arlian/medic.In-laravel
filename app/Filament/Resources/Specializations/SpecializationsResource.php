@@ -2,13 +2,10 @@
 
 namespace App\Filament\Resources\Specializations;
 
-use UnitEnum;
-use BackedEnum;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
 use App\Models\Specialization;
 use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
 use App\Filament\Resources\Specializations\Pages\ViewSpecializations;
 use App\Filament\Resources\Specializations\Pages\ListSpecializations;
 use App\Filament\Resources\Specializations\Pages\EditSpecializations;
@@ -21,9 +18,9 @@ class SpecializationsResource extends Resource
 {
     protected static ?string $model = Specialization::class;
 
-    protected static string | UnitEnum | null $navigationGroup = 'Master Data';
+    protected static string | \UnitEnum | null $navigationGroup = 'Master Data';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | \BackedEnum | null $navigationIcon = 'hugeicons-doctor-02';
 
     public static function form(Schema $schema): Schema
     {
