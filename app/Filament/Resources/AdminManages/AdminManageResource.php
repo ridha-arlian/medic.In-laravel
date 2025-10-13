@@ -2,13 +2,10 @@
 
 namespace App\Filament\Resources\AdminManages;
 
-use UnitEnum;
-use BackedEnum;
 use App\Models\User;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\AdminManages\Pages\ListAdminManages;
 use App\Filament\Resources\AdminManages\Schemas\AdminManageForm;
@@ -19,13 +16,13 @@ class AdminManageResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $modelLabel = 'Admin';
+    protected static ?string $modelLabel = 'Administrator';
 
-    protected static ?string $pluralModelLabel = 'Admin';
+    protected static ?string $pluralModelLabel = 'Administrators';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Management Users';
+    protected static string | \UnitEnum | null $navigationGroup = 'Management Users';
 
-    protected static string | BackedEnum | null $navigationIcon = Heroicon::OutlinedUsers;
+    protected static string | \BackedEnum | null $navigationIcon = 'clarity-administrator-line';
 
     protected static ?int $navigationSort = 1;
 
@@ -59,9 +56,7 @@ class AdminManageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListAdminManages::route('/'),
-            // 'create' => CreateAdminManage::route('/create'),
-            // 'edit' => EditAdminManage::route('/{record}/edit'),
+            'index' => ListAdminManages::route('/')
         ];
     }
 }
