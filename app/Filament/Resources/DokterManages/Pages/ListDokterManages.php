@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\DokterManages\Pages;
 
 use Filament\Actions\CreateAction;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\Hash;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -19,6 +20,10 @@ class ListDokterManages extends ListRecords
     {
         return [
             CreateAction::make()
+                ->createAnother(false)
+                ->icon(Heroicon::OutlinedPlus)
+                ->modalHeading('Add New Doctor Account')
+                ->label('Add')
                 ->steps([
                     Step::make('Account Information')
                         ->description('Setup the account details.')
@@ -26,11 +31,11 @@ class ListDokterManages extends ListRecords
                             TextInput::make('name')
                                 ->required(),
                             TextInput::make('email')
-                                ->label('email address')
+                                ->label('Email Address')
                                 ->email()
                                 ->required(),
                             TextInput::make('role_display')
-                                ->default('Dokter')
+                                ->default('Doctor')
                                 ->label('Role')
                                 ->disabled()
                                 ->dehydrated(false),
@@ -44,39 +49,39 @@ class ListDokterManages extends ListRecords
                         ])
                         ->columns(2),
                     Step::make('Additional Information')
-                        ->description('Setup the additional details for the Dokter.')
+                        ->description('Setup the additional details for the Doctor.')
                         ->schema([
                             TextInput::make('str_number')
-                                ->label('No. STR (Surat Tanda Registrasi)')
+                                ->label('STR Number (Surat Tanda Registrasi)')
                                 ->required()
                                 ->rule('unique:dokters,str_number')
                                 ->maxLength(255),
                             Select::make('specialization_id')
-                                ->label('Spesialisasi')
+                                ->label('Specialization')
                                 ->options(\App\Models\Specialization::where('is_active', true)
                                     ->pluck('name', 'id'))
                                 ->required()
                                 ->searchable()
-                                ->placeholder('Pilih Spesialisasi'),
+                                ->placeholder('Select Specialization'),
                             TextInput::make('consultation_fee')
-                                ->label('Biaya Konsultasi')
+                                ->label('Consultation Fee')
                                 ->numeric()
                                 ->minValue(0)
+                                ->prefix('Rp')
                                 ->required(),
                             TextInput::make('phone_number')
-                                ->label('No. Telepon')
+                                ->label('Phone Number')
                                 ->tel()
                                 ->telRegex('/^(?:\+62|62|0)[0-9]{8,13}$/')
                                 ->required()
                                 ->maxLength(20),
                             Textarea::make('address')
-                                ->label('Alamat Lengkap')
+                                ->label('Full Address')
                                 ->required()
                                 ->rows(3)
                                 ->columnSpanFull(),
                         ])->columns(2),
                 ])
-                ->createAnother(false)
                 ->after(function ($record, array $data) {
                     $record->syncRoles(['dokter']);
 

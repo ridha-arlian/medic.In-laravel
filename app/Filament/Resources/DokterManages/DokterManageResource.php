@@ -2,13 +2,10 @@
 
 namespace App\Filament\Resources\DokterManages;
 
-use UnitEnum;
-use BackedEnum;
 use App\Models\User;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\DokterManages\Pages\ListDokterManages;
 use App\Filament\Resources\DokterManages\Schemas\DokterManageForm;
@@ -19,13 +16,13 @@ class DokterManageResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $modelLabel = 'Dokter';
+    protected static ?string $modelLabel = 'Doctor';
 
-    protected static ?string $pluralModelLabel = 'Dokter';
+    protected static ?string $pluralModelLabel = 'Doctors';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Management Users';
+    protected static string | \UnitEnum | null $navigationGroup = 'Management Users';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
+    protected static string | \BackedEnum | null $navigationIcon = 'fas-user-doctor';
 
     protected static ?int $navigationSort = 1;
 
@@ -66,7 +63,7 @@ class DokterManageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListDokterManages::route('/'),
+            'index' => ListDokterManages::route('/')
         ];
     }
 }
