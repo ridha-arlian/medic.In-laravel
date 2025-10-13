@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\MedicineStocks;
 
-use BackedEnum;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
 use App\Models\MedicineStock;
@@ -19,7 +18,7 @@ class MedicineStocksResource extends Resource
 {
     protected static ?string $model = MedicineStock::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema
     {
@@ -50,11 +49,21 @@ class MedicineStocksResource extends Resource
         ];
     }
 
+    public static function getRecordSlug(): string
+    {
+        return 'name';
+    }
+
+    public static function getRecordRouteKeyName(): ?string
+    {
+        return 'name';
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => ListMedicineStocks::route('/'),
-            'view' => ViewMedicineStocks::route('/{record}'),
+            'view' => ViewMedicineStocks::route('/{record:name}'),
         ];
     }
 }

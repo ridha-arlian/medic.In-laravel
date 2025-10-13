@@ -14,74 +14,81 @@ class MedicineStocksInfolist
     {
         return $schema
             ->components([
-                Section::make('Basic Information')
+                Section::make('Medicine Information')
+                    ->description('Basic medicine information')
                     ->schema([
-                        Grid::make(2)
-                            ->schema([
-                                TextEntry::make('medicine_stocks_id')
-                                    ->label('Stock ID')
-                                    ->copyable()
-                                    ->icon('heroicon-o-hashtag'),
-                                TextEntry::make('name')
-                                    ->size(TextSize::Large)
-                                    ->weight('bold'),
-                            ]),
                         Grid::make(3)
                             ->schema([
-                                TextEntry::make('medicine_types.name')
-                                    ->label('Drug Type')
-                                    ->badge(),
-                                TextEntry::make('medicine_categories.name')
-                                    ->label('Drug Category')
-                                    ->badge(),
-                                TextEntry::make('medicine_suppliers.name')
-                                    ->label('Supplier')
-                                    ->badge(),
+                                TextEntry::make('name')
+                                    ->label('Medicine Name')
+                                    ->weight('bold')
+                                    ->size(TextSize::Large),
+                                TextEntry::make('batch_id')
+                                    ->label('Batch ID')
+                                    ->copyable()
+                                    ->icon('heroicon-o-hashtag'),
+                                TextEntry::make('medicine_stocks_id')
+                                    ->label('Medicine Stock ID')
+                                    ->copyable()
+                                    ->icon('heroicon-o-hashtag'),
                             ]),
                     ]),
-
-                Section::make('Stock Information')
+                    
+                Section::make('Stock & Pricing')
+                    ->description('Manage stock quantity and pricing details')
                     ->schema([
-                        Grid::make(2)
+                        Grid::make(3)
                             ->schema([
                                 TextEntry::make('quantity')
-                                    ->label('Current Stock')
+                                    ->label('Stock Quantity')
                                     ->badge()
                                     ->color(fn (string $state): string => match (true) {
                                         $state <= 10 => 'danger',
                                         $state <= 50 => 'warning', 
                                         default => 'success',
-                                    }),
+                                    })
+                                    ->size(TextSize::Large),
                                 TextEntry::make('price')
                                     ->label('Price')
-                                    ->money('IDR', divideBy: 1),
-                            ]),
-                    ]),
-
-                Section::make('Batch & Expiry')
-                    ->schema([
-                        Grid::make(2)
-                            ->schema([
-                                TextEntry::make('batch_id')
-                                    ->label('Batch ID')
-                                    ->copyable(),
+                                    ->money('IDR', divideBy: 1, decimalPlaces: 0),
                                 TextEntry::make('expired_date')
-                                    ->label('Expiry Date')
-                                    ->date('d M Y')
+                                    ->label('Expired Date')
+                                    ->date('d M, Y')
                                     ->color(fn (string $state): string => now()->addDays(90)->gte($state) ? 'danger' : 'success'),
                             ]),
                     ]),
-
-                Section::make('System Information')
+                    
+                Section::make('Classification')
+                    ->description('Medicine type, category, and supplier')
                     ->schema([
-                        TextEntry::make('created_at')
-                            ->label('Added on')
-                            ->since(),
-                        TextEntry::make('updated_at')
-                            ->label('Last updated')
-                            ->since(),
-                    ])
-                    ->columns(2),
+                        Grid::make(3)
+                            ->schema([
+                                TextEntry::make('medicine_types.name')
+                                    ->label('Medicine Type')
+                                    ->badge()
+                                    ->size(TextSize::Large),
+                                TextEntry::make('medicine_categories.name')
+                                    ->label('Medicine Category')
+                                    ->badge()
+                                    ->size(TextSize::Large),
+                                TextEntry::make('medicine_suppliers.name')
+                                    ->label('Supplier')
+                                    ->badge()
+                                    ->size(TextSize::Large),
+                            ]),
+                    ]),
+                    
+                Section::make('Status')
+                    ->description('Registered and updated timestamps')
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                TextEntry::make('created_at')
+                                    ->label('Registered Since'),
+                                TextEntry::make('updated_at')
+                                    ->label('Last Updated'),
+                            ]),
+                    ]),
             ]);
     }
 }
