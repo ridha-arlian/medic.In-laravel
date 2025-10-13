@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\Suppliers;
 
-use UnitEnum;
-use BackedEnum;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
 use App\Models\MedicineSupplier;
@@ -23,10 +21,10 @@ class SuppliersResource extends Resource
     
     protected static ?string $model = MedicineSupplier::class;
     
-    protected static string | UnitEnum | null $navigationGroup = 'Catalogues';
-    
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTruck;
-    
+    protected static string | \UnitEnum | null $navigationGroup = 'Master Data';
+
+    protected static string | \BackedEnum | null $navigationIcon = Heroicon::OutlinedTruck;
+
     public static function form(Schema $schema): Schema
     {
         return SuppliersForm::configure($schema);
