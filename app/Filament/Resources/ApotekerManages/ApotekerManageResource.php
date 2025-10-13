@@ -2,13 +2,10 @@
 
 namespace App\Filament\Resources\ApotekerManages;
 
-use UnitEnum;
-use BackedEnum;
 use App\Models\User;
 use Filament\Tables\Table;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ApotekerManages\Pages\ListApotekerManages;
 use App\Filament\Resources\ApotekerManages\Schemas\ApotekerManageForm;
@@ -19,13 +16,13 @@ class ApotekerManageResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $modelLabel = 'Apoteker';
+    protected static ?string $modelLabel = 'Pharmacist';
 
-    protected static ?string $pluralModelLabel = 'Apoteker';
+    protected static ?string $pluralModelLabel = 'Pharmacists';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Management Users';
+    protected static string | \UnitEnum | null $navigationGroup = 'Management Users';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
+    protected static string | \BackedEnum | null $navigationIcon = 'hugeicons-doctor-03';
 
     protected static ?int $navigationSort = 1;
 
@@ -66,7 +63,7 @@ class ApotekerManageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListApotekerManages::route('/'),
+            'index' => ListApotekerManages::route('/')
         ];
     }
 }

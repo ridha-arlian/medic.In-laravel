@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ApotekerManages\Pages;
 
 use Filament\Actions\CreateAction;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Facades\Hash;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -18,6 +19,10 @@ class ListApotekerManages extends ListRecords
     {
         return [
             CreateAction::make()
+                ->icon(Heroicon::OutlinedPlus)
+                ->modalHeading('Add New Pharmacist Account')
+                ->createAnother(false)
+                ->label('Add')
                 ->steps([
                     Step::make('Account Information')
                         ->description('Setup the account details.')
@@ -29,7 +34,7 @@ class ListApotekerManages extends ListRecords
                                 ->email()
                                 ->required(),
                             TextInput::make('role_display')
-                                ->default('Apoteker')
+                                ->default('Pharmacist')
                                 ->label('Role')
                                 ->disabled()
                                 ->dehydrated(false),
@@ -38,32 +43,33 @@ class ListApotekerManages extends ListRecords
                                 ->dehydrateStateUsing(callback: fn(string $state): string => Hash::make($state))
                                 ->dehydrated(condition: fn(?string $state): bool => filled(value: $state))
                                 ->required(condition: fn(string $operation): bool => $operation === 'create')
+                                ->minLength(8)
                                 ->maxLength(255)
                                 ->revealable(),
                         ])
                         ->columns(2),
                     Step::make('Additional Information')
-                        ->description('Setup the additional details for the Apoteker.')
+                        ->description('Setup the additional details for the Pharmacist.')
                         ->schema([
                             TextInput::make('stra_number')
-                                ->label('No. STRA (Surat Tanda Registrasi Apoteker)')
+                                ->label('STRA Number (Surat Tanda Registrasi Apoteker)')
                                 ->required()
                                 ->rule('unique:apotekers,stra_number')
                                 ->maxLength(255),
                             TextInput::make('phone_number')
-                                ->label('No. Telepon')
+                                ->label('Phone Number')
                                 ->tel()
                                 ->telRegex('/^(?:\+62|62|0)[0-9]{8,13}$/')
                                 ->required()
                                 ->maxLength(20),
                             Textarea::make('address')
-                                ->label('Alamat Lengkap')
+                                ->label('Full Address')
                                 ->required()
                                 ->rows(3)
                                 ->columnSpanFull(),
-                    ])->columns(2),
+                    ])
+                    ->columns(2),
             ])
-                ->createAnother(false)
                 ->after(function ($record, array $data) {
                     $record->syncRoles(['apoteker']);
 
