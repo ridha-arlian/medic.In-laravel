@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\Specialization;
 use Illuminate\Foundation\Auth\User as AuthUser;
+use App\Models\Specialization;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class SpecializationPolicy

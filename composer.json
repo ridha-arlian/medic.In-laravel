@@ -7,12 +7,19 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
+        "afatmustafa/blade-hugeicons": "^1.0",
         "bezhansalleh/filament-shield": "^4.0",
+        "codeat3/blade-clarity-icons": "^1.10",
+        "codeat3/blade-fluentui-system-icons": "^1.34",
+        "codeat3/blade-unicons": "^1.9",
+        "faisal50x/blade-ionicons": "^1.1",
         "filament/filament": "^4.0",
         "laravel/framework": "^12.0",
         "laravel/pail": "^1.2",
         "laravel/tinker": "^2.10.1",
-        "omaressaouaf/laravel-id-generator": "^1.2"
+        "omaressaouaf/laravel-id-generator": "^1.2",
+        "owenvoke/blade-fontawesome": "^2.9",
+        "troccoli/blade-health-icons": "^5.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.6",
